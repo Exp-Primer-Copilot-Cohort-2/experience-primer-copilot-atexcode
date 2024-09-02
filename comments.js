@@ -1,13 +1,22 @@
-// Create a webserver
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
-var path = require('path');
+// Create web server
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const port = 3000;
+const comments = [];
 
-var server = http.createServer(function(req, res) {
-  var urlParsed = url.parse(req.url, true);
+app.use(bodyParser.json());
 
-  if (urlParsed.pathname == '/') {
-    res.end('Hello world');
-  }
+app.get('/comments', (req, res) => {
+  res.json(comments);
+});
+
+app.post('/comments', (req, res) => {
+  const comment = req.body;
+  comments.push(comment);
+  res.send('Comment is added to the server');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
