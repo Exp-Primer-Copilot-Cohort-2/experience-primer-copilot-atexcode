@@ -1,7 +1,9 @@
-function skillsMember() {
-  var member = this;
-  member.skill = 'JavaScript';
-  member.showSkill = function() {
-    console.log(member.skill);
-  };
+function skillsMember()
+{
+    var member = {
+        name: "John Doe",
+        age: 30,
+        skills: ["JavaScript", "HTML", "CSS"]
+    };
+    return member;
 }
